@@ -1,0 +1,92 @@
+Ques . Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.
+
+Example
+
+The minimum sum is  and the maximum sum is . The function prints
+
+16 24
+Function Description
+
+Complete the miniMaxSum function in the editor below.
+
+miniMaxSum has the following parameter(s):
+
+arr: an array of  integers
+Print
+
+Print two space-separated integers on one line: the minimum sum and the maximum sum of  of  elements.
+
+Input Format
+
+A single line of five space-separated integers.
+
+Output Format
+
+Print two space-separated long integers denoting the respective minimum and maximum values that can be calculated by summing exactly four of the five integers. (The output can be greater than a 32 bit integer.)
+
+Sample Input
+
+1 2 3 4 5
+Sample Output
+
+10 14
+
+-> SOLUTION :
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the miniMaxSum function below.
+    static void miniMaxSum(int[] arr) {
+        long sum = 0;
+        long temp;
+        long ar[] = new long[5];
+        for(int i=0;i<5;i++)
+        {
+            sum =0;
+            for(int j=0;j<5;j++)
+            {
+                if(j==i)
+                 continue;
+                else
+                 sum = sum + arr[j];
+            }
+            ar[i]=sum;
+        }
+        for(int i=0;i<5;i++)
+        {
+            for(int j=0;j<4;j++)
+            {
+                if(ar[j]>ar[j+1])
+                {
+                    temp=ar[j];
+                    ar[j]=ar[j+1];
+                    ar[j+1]=temp;
+                }
+            }
+        }
+        System.out.println(ar[0]+" "+ar[4]);
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int[] arr = new int[5];
+
+        for (int i = 0; i < 5; i++) {
+            // int arrItem = Integer.parseInt(arrItems[i]);
+            arr[i] = scanner.nextInt();
+        }
+
+        miniMaxSum(arr);
+
+        scanner.close();
+    }
+}
